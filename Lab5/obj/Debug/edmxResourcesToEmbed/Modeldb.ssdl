@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище CarSharingDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="Booking_Id" />
+    </Key>
+    <Property Name="Booking_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientID" Type="bigint" />
+    <Property Name="CarID" Type="bigint" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+    <Property Name="EndDate" Type="date" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="Car_Id" />
+    </Key>
+    <Property Name="Car_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Brand" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Model" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="LicensePlate" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="RentalPrice" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Photo" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Client_Id" />
+    </Key>
+    <Property Name="Client_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MiddleName" Type="varchar(max)" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Phone" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Employee_Id" />
+    </Key>
+    <Property Name="Employee_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Position" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="Repair">
+    <Key>
+      <PropertyRef Name="Repair_Id" />
+    </Key>
+    <Property Name="Repair_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CarID" Type="bigint" />
+    <Property Name="EmployeeID" Type="bigint" />
+    <Property Name="StartRepairDate" Type="date" Nullable="false" />
+    <Property Name="EndRepairDate" Type="date" />
+    <Property Name="ProblemDescription" Type="text" />
+    <Property Name="RepairCost" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <Association Name="FK__Booking__CarID__403A8C7D">
+    <End Role="Car" Type="Self.Car" Multiplicity="0..1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="Car_Id" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="CarID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Booking__ClientI__3F466844">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Client_Id" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="ClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Repair__CarID__44FF419A">
+    <End Role="Car" Type="Self.Car" Multiplicity="0..1" />
+    <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="Car_Id" />
+      </Principal>
+      <Dependent Role="Repair">
+        <PropertyRef Name="CarID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Repair__Employee__45F365D3">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Employee_Id" />
+      </Principal>
+      <Dependent Role="Repair">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище CarSharingDBModelContainer">
+    <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Repair" EntityType="Self.Repair" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Booking__CarID__403A8C7D" Association="Self.FK__Booking__CarID__403A8C7D">
+      <End Role="Car" EntitySet="Car" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Booking__ClientI__3F466844" Association="Self.FK__Booking__ClientI__3F466844">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Repair__CarID__44FF419A" Association="Self.FK__Repair__CarID__44FF419A">
+      <End Role="Car" EntitySet="Car" />
+      <End Role="Repair" EntitySet="Repair" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Repair__Employee__45F365D3" Association="Self.FK__Repair__Employee__45F365D3">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Repair" EntitySet="Repair" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
