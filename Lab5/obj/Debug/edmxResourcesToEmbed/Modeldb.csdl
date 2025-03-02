@@ -27,7 +27,7 @@
     <Property Name="RentalPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Booking" Relationship="Self.FK__Booking__CarID__403A8C7D" FromRole="Car" ToRole="Booking" />
-    <NavigationProperty Name="Repair" Relationship="Self.FK__Repair__CarID__44FF419A" FromRole="Car" ToRole="Repair" />
+    <NavigationProperty Name="Repair" Relationship="Self.FK__Repair__CarID__46E78A0C" FromRole="Car" ToRole="Repair" />
   </EntityType>
   <EntityType Name="Client">
     <Key>
@@ -50,8 +50,10 @@
     <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Repair" Relationship="Self.FK__Repair__Employee__45F365D3" FromRole="Employee" ToRole="Repair" />
+    <NavigationProperty Name="Repair" Relationship="Self.FK__Repair__Employee__47DBAE45" FromRole="Employee" ToRole="Repair" />
   </EntityType>
   <EntityType Name="Repair">
     <Key>
@@ -64,8 +66,8 @@
     <Property Name="EndRepairDate" Type="DateTime" Precision="0" />
     <Property Name="ProblemDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="RepairCost" Type="Decimal" Precision="10" Scale="2" />
-    <NavigationProperty Name="Car" Relationship="Self.FK__Repair__CarID__44FF419A" FromRole="Repair" ToRole="Car" />
-    <NavigationProperty Name="Employee" Relationship="Self.FK__Repair__Employee__45F365D3" FromRole="Repair" ToRole="Employee" />
+    <NavigationProperty Name="Car" Relationship="Self.FK__Repair__CarID__46E78A0C" FromRole="Repair" ToRole="Car" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__Repair__Employee__47DBAE45" FromRole="Repair" ToRole="Employee" />
   </EntityType>
   <Association Name="FK__Booking__CarID__403A8C7D">
     <End Role="Car" Type="Self.Car" Multiplicity="0..1" />
@@ -91,7 +93,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Repair__CarID__44FF419A">
+  <Association Name="FK__Repair__CarID__46E78A0C">
     <End Role="Car" Type="Self.Car" Multiplicity="0..1" />
     <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
     <ReferentialConstraint>
@@ -103,7 +105,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Repair__Employee__45F365D3">
+  <Association Name="FK__Repair__Employee__47DBAE45">
     <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
     <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
     <ReferentialConstraint>
@@ -115,7 +117,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="CarSharingDBEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="CarSharingDBEntities2" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Booking" EntityType="Self.Booking" />
     <EntitySet Name="Car" EntityType="Self.Car" />
     <EntitySet Name="Client" EntityType="Self.Client" />
@@ -129,11 +131,11 @@
       <End Role="Client" EntitySet="Client" />
       <End Role="Booking" EntitySet="Booking" />
     </AssociationSet>
-    <AssociationSet Name="FK__Repair__CarID__44FF419A" Association="Self.FK__Repair__CarID__44FF419A">
+    <AssociationSet Name="FK__Repair__CarID__46E78A0C" Association="Self.FK__Repair__CarID__46E78A0C">
       <End Role="Car" EntitySet="Car" />
       <End Role="Repair" EntitySet="Repair" />
     </AssociationSet>
-    <AssociationSet Name="FK__Repair__Employee__45F365D3" Association="Self.FK__Repair__Employee__45F365D3">
+    <AssociationSet Name="FK__Repair__Employee__47DBAE45" Association="Self.FK__Repair__Employee__47DBAE45">
       <End Role="Employee" EntitySet="Employee" />
       <End Role="Repair" EntitySet="Repair" />
     </AssociationSet>

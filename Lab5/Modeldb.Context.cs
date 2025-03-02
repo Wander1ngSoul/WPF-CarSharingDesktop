@@ -13,10 +13,10 @@ namespace Lab5
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CarSharingDBEntities : DbContext
+    public partial class CarSharingDBEntities2 : DbContext
     {
-        public CarSharingDBEntities()
-            : base("name=CarSharingDBEntities")
+        public CarSharingDBEntities2()
+            : base("name=CarSharingDBEntities2")
         {
         }
     

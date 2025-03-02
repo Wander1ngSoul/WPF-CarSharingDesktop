@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Хранилище CarSharingDBModelContainer" CdmEntityContainer="CarSharingDBEntities">
+  <EntityContainerMapping StorageEntityContainer="Хранилище CarSharingDBModelContainer" CdmEntityContainer="CarSharingDBEntities2">
     <EntitySetMapping Name="Booking">
       <EntityTypeMapping TypeName="CarSharingDBModel.Booking">
         <MappingFragment StoreEntitySet="Booking">
@@ -48,6 +48,8 @@
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Phone" ColumnName="Phone" />
         </MappingFragment>
       </EntityTypeMapping>

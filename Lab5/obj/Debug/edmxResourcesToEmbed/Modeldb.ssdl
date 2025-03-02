@@ -45,6 +45,8 @@
     <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Position" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="Phone" Type="varchar" MaxLength="15" />
   </EntityType>
   <EntityType Name="Repair">
@@ -83,7 +85,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Repair__CarID__44FF419A">
+  <Association Name="FK__Repair__CarID__46E78A0C">
     <End Role="Car" Type="Self.Car" Multiplicity="0..1" />
     <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
     <ReferentialConstraint>
@@ -95,7 +97,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Repair__Employee__45F365D3">
+  <Association Name="FK__Repair__Employee__47DBAE45">
     <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
     <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
     <ReferentialConstraint>
@@ -121,11 +123,11 @@
       <End Role="Client" EntitySet="Client" />
       <End Role="Booking" EntitySet="Booking" />
     </AssociationSet>
-    <AssociationSet Name="FK__Repair__CarID__44FF419A" Association="Self.FK__Repair__CarID__44FF419A">
+    <AssociationSet Name="FK__Repair__CarID__46E78A0C" Association="Self.FK__Repair__CarID__46E78A0C">
       <End Role="Car" EntitySet="Car" />
       <End Role="Repair" EntitySet="Repair" />
     </AssociationSet>
-    <AssociationSet Name="FK__Repair__Employee__45F365D3" Association="Self.FK__Repair__Employee__45F365D3">
+    <AssociationSet Name="FK__Repair__Employee__47DBAE45" Association="Self.FK__Repair__Employee__47DBAE45">
       <End Role="Employee" EntitySet="Employee" />
       <End Role="Repair" EntitySet="Repair" />
     </AssociationSet>

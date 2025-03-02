@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\ignat\OneDrive\Рабочий стол\Важное\3 курс\2 семестр\ТРПО\ЛР5\Lab5\Lab5\obj\Debug\
+C:\Users\ignat\Desktop\WPF-CarSharingDesktop\Lab5\obj\Debug\
 Lab5
 none
 false
 DEBUG;TRACE
-C:\Users\ignat\OneDrive\Рабочий стол\Важное\3 курс\2 семестр\ТРПО\ЛР5\Lab5\Lab5\App.xaml
-1219584333
+C:\Users\ignat\Desktop\WPF-CarSharingDesktop\Lab5\App.xaml
+10-1712572472
 2-1103810047
-141105241876
-18-1130480147
-MainWindow.xaml;
+221841119051
+18851895435
+MainWindow.xaml;Windows\BookingEditWindow.xaml;Windows\BookingWindow.xaml;Windows\CarsEditWindow.xaml;Windows\CarsWindow.xaml;Windows\ClientEditWindow.xaml;Windows\ClientsWindow.xaml;Windows\EmployeeEditWindow.xaml;Windows\EmployeesWindow.xaml;Windows\StartWindow.xaml;
 
 False
 

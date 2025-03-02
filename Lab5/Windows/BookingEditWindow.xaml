@@ -1,0 +1,43 @@
+﻿<Window x:Class="Lab5.Windows.BookingEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Редактирование бронирования" Height="450" Width="800">
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#2C3E50" Offset="0"/>
+            <GradientStop Color="#34495E" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <StackPanel Margin="20">
+            <TextBlock Text="Редактирование бронирования" FontSize="22" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,10"/>
+
+            <TextBlock Text="Клиент" Foreground="White"/>
+            <ComboBox x:Name="ClientComboBox" Margin="0,5"/>
+
+            <TextBlock Text="Автомобиль" Foreground="White"/>
+            <ComboBox x:Name="CarComboBox" Margin="0,5"/>
+
+            <TextBlock Text="Дата начала" Foreground="White"/>
+            <DatePicker x:Name="StartDatePicker" Margin="0,5"/>
+
+            <TextBlock Text="Дата окончания" Foreground="White"/>
+            <DatePicker x:Name="EndDatePicker" Margin="0,5"/>
+
+            <TextBlock Text="Статус" Foreground="White"/>
+            <ComboBox x:Name="StatusComboBox" Margin="0,5">
+                <ComboBoxItem>confirmed</ComboBoxItem>
+                <ComboBoxItem>canceled</ComboBoxItem>
+            </ComboBox>
+
+
+            <TextBlock Text="Цена" Foreground="White"/>
+            <TextBox x:Name="PriceTextBox" Margin="0,5"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
+                <Button Content="Сохранить" Width="100" Height="30" Background="#E74C3C" Foreground="White" Click="SaveButton_Click"/>
+                <Button Content="Отмена" Width="100" Height="30" Background="#2980B9" Foreground="White" Click="CancelButton_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
