@@ -8,7 +8,7 @@ namespace Lab5.Windows
     public partial class BookingEditWindow : Window
     {
         private Booking _booking;
-        private CarSharingDBEntities2 _context = new CarSharingDBEntities2();
+        private CarSharingDB1Entities _context = new CarSharingDB1Entities();
 
         public BookingEditWindow(Booking booking = null)
         {
@@ -129,7 +129,7 @@ namespace Lab5.Windows
                 _context.SaveChanges();
                 MessageBox.Show("Бронирование успешно сохранено.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                 OnBookingUpdated();  
-                new BookingWindow().Show();
+                new BookingWindow(null).Show();
                 this.Close();
             }
             catch (Exception ex)
@@ -140,7 +140,7 @@ namespace Lab5.Windows
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            new BookingWindow().Show();
+            new BookingWindow(null).Show();
             this.Close();
         }
     }

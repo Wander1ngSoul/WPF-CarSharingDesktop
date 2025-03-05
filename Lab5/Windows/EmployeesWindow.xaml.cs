@@ -7,12 +7,14 @@ namespace Lab5.Windows
 {
     public partial class EmployeesWindow : Window
     {
-        private readonly CarSharingDBEntities2 _context;
+        private readonly CarSharingDB1Entities _context;
+        private readonly Employee _currentUser;
 
-        public EmployeesWindow()
+        public EmployeesWindow(Employee currentUser)
         {
             InitializeComponent();
-            _context = new CarSharingDBEntities2();
+            _context = new CarSharingDB1Entities();
+            _currentUser = currentUser;
             LoadEmployees();
         }
 
@@ -24,12 +26,18 @@ namespace Lab5.Windows
 
         private void EditEmployee_Click(object sender, RoutedEventArgs e)
         {
+            if (_currentUser.Position != "Manager")
+            {
+                MessageBox.Show("У вас нет прав для редактирования сотрудников.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             var button = sender as Button;
             var employee = button?.DataContext as Employee;
 
             if (employee != null)
             {
-                var employeeEditWindow = new EmployeeEditWindow(employee);  // Окно редактирования сотрудника
+                var employeeEditWindow = new EmployeeEditWindow(employee);  
                 employeeEditWindow.Show();
                 this.Close();
             }
@@ -37,6 +45,12 @@ namespace Lab5.Windows
 
         private void DeleteEmployee_Click(object sender, RoutedEventArgs eventArgs)
         {
+            if (_currentUser.Position != "Manager")
+            {
+                MessageBox.Show("У вас нет прав для удаления сотрудников.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             var button = sender as Button;
             var employee = button?.DataContext as Employee;
 
@@ -70,6 +84,12 @@ namespace Lab5.Windows
 
         private void CreateEmployee_Click(object sender, RoutedEventArgs e)
         {
+            if (_currentUser.Position != "Manager")
+            {
+                MessageBox.Show("У вас нет прав для создания сотрудников.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             var employeeEditWindow = new EmployeeEditWindow(); 
             employeeEditWindow.Show();
             this.Close();
@@ -77,10 +97,8 @@ namespace Lab5.Windows
 
         private void ReverseBtn_Click(object sender, RoutedEventArgs e)
         {
-            new StartWindow(null).Show();
+            new StartWindow(_currentUser).Show();
             this.Close();
-            
-
         }
     }
 }

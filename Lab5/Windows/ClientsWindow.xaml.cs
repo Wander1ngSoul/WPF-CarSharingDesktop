@@ -7,15 +7,23 @@ namespace Lab5.Windows
 {
     public partial class ClientsWindow : Window
     {
-        public ClientsWindow()
+        private Employee _currentUser;
+
+        public ClientsWindow(Employee currentUser)
         {
             InitializeComponent();
+            _currentUser = currentUser ?? throw new ArgumentNullException(nameof(currentUser), "Текущий пользователь не может быть null.");
+
+            MessageBox.Show($"Текущий пользователь: {_currentUser?.FirstName}, Должность: {_currentUser?.Position}", "Отладка", MessageBoxButton.OK, MessageBoxImage.Information);
+
             LoadClients();
         }
 
+
+
         private void LoadClients()
         {
-            using (var context = new CarSharingDBEntities2())
+            using (var context = new CarSharingDB1Entities())
             {
                 ClientsDataGrid.ItemsSource = context.Client.ToList();
             }
@@ -23,37 +31,42 @@ namespace Lab5.Windows
 
         private void CreateClient_Click(object sender, RoutedEventArgs e)
         {
-            var clientEditWindow = new ClientEditWindow();
-            clientEditWindow.Show();
-            LoadClients();
-            this.Close();
-        }
-
-        private void EditClient_Click(object sender, RoutedEventArgs e)
-        {
-            if (ClientsDataGrid.SelectedItem is Client selectedClient)
+            if (_currentUser.Position == "Manager")
             {
-                var clientEditWindow = new ClientEditWindow(selectedClient);
+                var clientEditWindow = new ClientEditWindow(_currentUser, null);
                 clientEditWindow.Show();
-                LoadClients();
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Выберите клиента для редактирования.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Вы не имеете прав для создания клиента.");
+            }
+        }
+
+        private void EditClient_Click(object sender, RoutedEventArgs e)
+        {
+            if (_currentUser.Position == "Manager" && ClientsDataGrid.SelectedItem is Client selectedClient)
+            {
+                var clientEditWindow = new ClientEditWindow(_currentUser,selectedClient);
+                clientEditWindow.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Выберите клиента для редактирования или у вас нет прав для редактирования.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
         private void DeleteClient_Click(object sender, RoutedEventArgs e)
         {
-            if (ClientsDataGrid.SelectedItem is Client selectedClient)
+            if (_currentUser.Position == "Manager" && ClientsDataGrid.SelectedItem is Client selectedClient)
             {
                 if (MessageBox.Show("Вы уверены, что хотите удалить клиента?", "Подтверждение",
                                     MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     try
                     {
-                        using (var context = new CarSharingDBEntities2())
+                        using (var context = new CarSharingDB1Entities())
                         {
                             var clientToRemove = context.Client.FirstOrDefault(c => c.Client_Id == selectedClient.Client_Id);
                             if (clientToRemove != null)
@@ -61,7 +74,7 @@ namespace Lab5.Windows
                                 context.Client.Remove(clientToRemove);
                                 context.SaveChanges();
                                 MessageBox.Show("Клиент удалён.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                                LoadClients();
+                                LoadClients(); 
                             }
                             else
                             {
@@ -77,14 +90,21 @@ namespace Lab5.Windows
             }
             else
             {
-                MessageBox.Show("Выберите клиента для удаления.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Выберите клиента для удаления или у вас нет прав для удаления.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
         private void ReverseBtn_Click(object sender, RoutedEventArgs e)
         {
-            new StartWindow(null).Show();
+            if (_currentUser == null)
+            {
+                MessageBox.Show("Ошибка: текущий пользователь отсутствует.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            new StartWindow(_currentUser).Show();
             this.Close();
         }
+
     }
 }

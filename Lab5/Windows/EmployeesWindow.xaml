@@ -28,15 +28,15 @@
                             <TextBlock Text="{Binding Email}" FontSize="14" Foreground="White" VerticalAlignment="Center" Width="200" Margin="5"/>
                             <TextBlock Text="{Binding Phone}" FontSize="14" Foreground="White" VerticalAlignment="Center" Width="200" Margin="5"/>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5">
-                                <Button Content="Изменить" Width="80" Height="30" Background="#2980B9" Foreground="White" Margin="5" Click="EditEmployee_Click"/>
-                                <Button Content="Удалить" Width="80" Height="30" Background="#E74C3C" Foreground="White" Margin="5" Click="DeleteEmployee_Click"/>
+                                <Button Content="Изменить" x:Name="EditBtn" Width="80" Height="30" Background="#2980B9" Foreground="White" Margin="5" Click="EditEmployee_Click"/>
+                                <Button Content="Удалить" x:Name="DeleteBtn" Width="80" Height="30" Background="#E74C3C" Foreground="White" Margin="5" Click="DeleteEmployee_Click"/>
                             </StackPanel>
                         </StackPanel>
                     </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Content="Создать сотрудника" Width="150" Height="30" FontSize="14" 
+        <Button Content="Создать сотрудника" x:Name="CreateBtn" Width="150" Height="30" FontSize="14" 
                 Background="#E74C3C" Foreground="White" HorizontalAlignment="Left" 
                 VerticalAlignment="Bottom" Margin="0,10" Click="CreateEmployee_Click"
                 BorderBrush="#C0392B" BorderThickness="1"/>

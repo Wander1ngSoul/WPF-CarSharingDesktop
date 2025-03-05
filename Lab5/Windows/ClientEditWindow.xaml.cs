@@ -9,10 +9,13 @@ namespace Lab5.Windows
     public partial class ClientEditWindow : Window
     {
         private Client _clientToEdit;
+        private Employee _employee;
 
-        public ClientEditWindow(Client client = null)
+
+        public ClientEditWindow(Employee employee,Client client = null)
         {
             InitializeComponent();
+            _employee = employee;
 
             if (client != null)
             {
@@ -52,9 +55,8 @@ namespace Lab5.Windows
                 _clientToEdit.Phone = phone;
                 _clientToEdit.Password = password;
 
-                using (var context = new CarSharingDBEntities2())
+                using (var context = new CarSharingDB1Entities())
                 {
-                    // Если клиент новый, проверяем на уникальность Email и Phone
                     if (_clientToEdit.Client_Id == 0)
                     {
                         if (context.Client.Any(c => c.Email == email))
@@ -69,12 +71,10 @@ namespace Lab5.Windows
                             return;
                         }
 
-                        // Добавляем нового клиента
                         context.Client.Add(_clientToEdit);
                     }
                     else
                     {
-                        // Если клиент редактируется, проверяем на уникальность Email и Phone
                         var existingClient = context.Client.FirstOrDefault(c => c.Client_Id == _clientToEdit.Client_Id);
                         if (existingClient != null)
                         {
@@ -90,17 +90,15 @@ namespace Lab5.Windows
                                 return;
                             }
 
-                            // Обновляем существующего клиента
                             context.Entry(existingClient).CurrentValues.SetValues(_clientToEdit);
                         }
                     }
 
-                    // Сохраняем изменения в базе данных
                     context.SaveChanges();
                 }
 
                 MessageBox.Show("Клиент успешно сохранен!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                new ClientsWindow().Show();
+                new ClientsWindow(_employee).Show();
                 this.Close();
             }
             catch (DbEntityValidationException ex)
@@ -115,10 +113,7 @@ namespace Lab5.Windows
                 }
                 MessageBox.Show(errorMessage, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при сохранении данных: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            
         }
 
         private bool ValidateFields(string firstName, string lastName, string middleName, string email, string phone, string password)
@@ -159,42 +154,9 @@ namespace Lab5.Windows
             return true;
         }
 
-        private void DeleteClient_Click(object sender, RoutedEventArgs e)
-        {
-            if (_clientToEdit.Client_Id == 0)
-            {
-                MessageBox.Show("Этот клиент еще не сохранен в базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            var result = MessageBox.Show("Вы уверены, что хотите удалить этого клиента?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (result == MessageBoxResult.Yes)
-            {
-                try
-                {
-                    using (var context = new CarSharingDBEntities2())
-                    {
-                        var client = context.Client.Find(_clientToEdit.Client_Id);
-                        if (client != null)
-                        {
-                            context.Client.Remove(client);
-                            context.SaveChanges();
-                        }
-                    }
-                    MessageBox.Show("Клиент успешно удален!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                    new ClientsWindow().Show();
-                    this.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Ошибка при удалении клиента: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-        }
-
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            new ClientsWindow().Show();
+            new ClientsWindow(_employee).Show();
             this.Close();
         }
     }

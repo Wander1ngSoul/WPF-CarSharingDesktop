@@ -64,7 +64,6 @@ namespace Lab5.Windows
                 return;
             }
 
-            // Валидация гос. номера РФ
             string licensePlatePattern = @"^[АВЕКМНОРСТУХ]\d{3}[АВЕКМНОРСТУХ]{2}\s\d{2,3}$";
             if (!Regex.IsMatch(LicensePlateTextBox.Text, licensePlatePattern, RegexOptions.IgnoreCase))
             {
@@ -72,7 +71,18 @@ namespace Lab5.Windows
                 return;
             }
 
-            var selectedStatus = ((ComboBoxItem)StatusComboBox.SelectedItem).Content.ToString();
+            if (StatusComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Выберите статус автомобиля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            var selectedStatus = StatusComboBox.SelectedItem.ToString();
+
+            if (selectedStatus.Length > 20)
+            {
+                MessageBox.Show("Статус не должен превышать 20 символов.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             try
             {
@@ -84,7 +94,7 @@ namespace Lab5.Windows
                 _carToEdit.Photo = PhotoTextBox.Text;
                 _carToEdit.Status = selectedStatus;
 
-                using (var context = new CarSharingDBEntities2())
+                using (var context = new CarSharingDB1Entities())
                 {
                     if (_carToEdit.Car_Id == 0)
                     {
@@ -100,6 +110,17 @@ namespace Lab5.Windows
                 MessageBox.Show("Автомобиль успешно сохранен!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                 new CarsWindow().Show();
                 this.Close();
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        MessageBox.Show($"Свойство: {validationError.PropertyName} - Ошибка: {validationError.ErrorMessage}",
+                            "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
             }
             catch (Exception ex)
             {

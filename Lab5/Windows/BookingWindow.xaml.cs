@@ -9,11 +9,19 @@ namespace Lab5.Windows
 {
     public partial class BookingWindow : Window
     {
-        private CarSharingDBEntities2 _context = new CarSharingDBEntities2();
+        private CarSharingDB1Entities _context = new CarSharingDB1Entities();
+        private Employee _currentUser;
 
-        public BookingWindow()
+        public BookingWindow(Employee currentUser)
         {
             InitializeComponent();
+            if (currentUser == null)
+            {
+                MessageBox.Show("Ошибка: текущий пользователь не был передан.");
+                this.Close();
+                return;
+            }
+            _currentUser = currentUser;
             LoadBookings();
         }
 
@@ -96,30 +104,44 @@ namespace Lab5.Windows
                     Margin = new Thickness(0, 10, 0, 0)
                 };
 
-                Button editButton = new Button
+                if (_currentUser.Position == "Manager")
                 {
-                    Content = "Изменить",
-                    Background = Brushes.Orange,
-                    Foreground = Brushes.White,
-                    Width = 100,
-                    Height = 30,
-                    Margin = new Thickness(5)
-                };
-                editButton.Click += (sender, e) => EditBooking(booking);
+                    Button editButton = new Button
+                    {
+                        Content = "Изменить",
+                        Background = Brushes.Orange,
+                        Foreground = Brushes.White,
+                        Width = 100,
+                        Height = 30,
+                        Margin = new Thickness(5)
+                    };
+                    editButton.Click += (sender, e) => EditBooking(booking);
 
-                Button deleteButton = new Button
+                    Button deleteButton = new Button
+                    {
+                        Content = "Удалить",
+                        Background = Brushes.Red,
+                        Foreground = Brushes.White,
+                        Width = 100,
+                        Height = 30,
+                        Margin = new Thickness(5)
+                    };
+                    deleteButton.Click += (sender, e) => DeleteBooking(booking);
+
+                    buttonsStack.Children.Add(editButton);
+                    buttonsStack.Children.Add(deleteButton);
+                }
+                else
                 {
-                    Content = "Удалить",
-                    Background = Brushes.Red,
-                    Foreground = Brushes.White,
-                    Width = 100,
-                    Height = 30,
-                    Margin = new Thickness(5)
-                };
-                deleteButton.Click += (sender, e) => DeleteBooking(booking);
-
-                buttonsStack.Children.Add(editButton);
-                buttonsStack.Children.Add(deleteButton);
+                    TextBlock noPermissionText = new TextBlock
+                    {
+                        Text = "У вас нет прав для изменения/удаления",
+                        Foreground = Brushes.Red,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        Margin = new Thickness(0, 10, 0, 0)
+                    };
+                    buttonsStack.Children.Add(noPermissionText);
+                }
 
                 stack.Children.Add(buttonsStack);
                 card.Child = stack;
@@ -130,17 +152,24 @@ namespace Lab5.Windows
         private void EditBooking(Booking booking)
         {
             var bookingEditWindow = new BookingEditWindow(booking);
-            bookingEditWindow.BookingUpdated += (sender, e) => LoadBookings();  // Подписка на событие обновления
+            bookingEditWindow.BookingUpdated += (sender, e) => LoadBookings();
             bookingEditWindow.Show();
             this.Close();
         }
 
-        private void AddBooking_Click(object sendering, RoutedEventArgs eventArgs)
+        private void AddBooking_Click(object senderк, RoutedEventArgs eventArgs)
         {
-            var bookingEditWindow = new BookingEditWindow(null);
-            bookingEditWindow.BookingUpdated += (sender, e) => LoadBookings();  // Подписка на событие обновления
-            bookingEditWindow.Show();
-            this.Close();
+            if (_currentUser.Position == "Manager")
+            {
+                var bookingEditWindow = new BookingEditWindow(null);
+                bookingEditWindow.BookingUpdated += (sender, e) => LoadBookings();
+                bookingEditWindow.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("У вас нет прав для добавления бронирования.");
+            }
         }
 
         private void DeleteBooking(Booking booking)
@@ -150,13 +179,20 @@ namespace Lab5.Windows
             {
                 _context.Booking.Remove(booking);
                 _context.SaveChanges();
-                LoadBookings(); 
+                LoadBookings();
             }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            new StartWindow(null).Show();
+            if (_currentUser != null)
+            {
+                new StartWindow(_currentUser).Show();
+            }
+            else
+            {
+                MessageBox.Show("Ошибка: текущий пользователь не был передан.");
+            }
             this.Close();
         }
     }

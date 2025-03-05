@@ -21,7 +21,6 @@
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                   Margin="0,20" Height="280">
             <DataGrid.Columns>
-           
                 <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*"/>
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="*"/>
                 <DataGridTextColumn Header="Отчество" Binding="{Binding MiddleName}" Width="*"/>
@@ -41,11 +40,10 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        
         <Button Content="Создать клиента" Width="150" Height="30" FontSize="14" 
                 Background="#2980B9" Foreground="White" HorizontalAlignment="Left" 
                 VerticalAlignment="Bottom" Margin="0,10" Click="CreateClient_Click"/>
-        
+
         <Button Content="Вернуться" Width="150" Height="30" FontSize="14"  
                 Background="#E74C3C" Foreground="White" HorizontalAlignment="Right" 
                 VerticalAlignment="Bottom" HorizontalContentAlignment="Center" Margin="0,10" Click="ReverseBtn_Click" />

@@ -9,22 +9,51 @@ namespace Lab5.Windows
 {
     public partial class CarsWindow : Window
     {
+        private Employee _currentUser;
         public CarsWindow()
         {
             InitializeComponent();
+            if (AuthService.CurrentUserRole != "Manager")
+            {
+                AddCarButton.Visibility = Visibility.Collapsed;
+            }
             LoadCars();
         }
+        public CarsWindow(Employee currentUser) 
+        {
+            InitializeComponent();
+            _currentUser = currentUser;
+
+            if (AuthService.CurrentUserRole != "Manager")
+            {
+                AddCarButton.Visibility = Visibility.Collapsed;
+            }
+            LoadCars();
+        }
+
+
 
         private void LoadCars()
         {
             CarsPanel.Children.Clear();
-            using (var context = new CarSharingDBEntities2())
+            using (var context = new CarSharingDB1Entities())
             {
                 var cars = context.Car.ToList();
                 foreach (var car in cars)
                 {
                     CarsPanel.Children.Add(CreateCarCard(car));
                 }
+            }
+        }
+
+        public static class AuthService
+        {
+           
+            public static string CurrentUserRole { get; set; }
+
+            public static void SetCurrentUser(string role)
+            {
+                CurrentUserRole = role;
             }
         }
 
@@ -101,28 +130,33 @@ namespace Lab5.Windows
                 Margin = new Thickness(5)
             };
 
-            Button editButton = new Button
+            if (AuthService.CurrentUserRole == "Manager")
             {
-                Content = "Изменить",
-                Width = 90,
-                Background = Brushes.Orange,
-                Foreground = Brushes.White,
-                Margin = new Thickness(5)
-            };
-            editButton.Click += (s, e) => EditCar(car);
+                Button editButton = new Button
+                {
+                    Content = "Изменить",
+                    Width = 90,
+                    Background = Brushes.Orange,
+                    Foreground = Brushes.White,
+                    Margin = new Thickness(5)
+                };
+                editButton.Click += (s, e) => EditCar(car);
 
-            Button deleteButton = new Button
-            {
-                Content = "Удалить",
-                Width = 90,
-                Background = Brushes.Red,
-                Foreground = Brushes.White,
-                Margin = new Thickness(5)
-            };
-            deleteButton.Click += (s, e) => DeleteCar(car);
+                Button deleteButton = new Button
+                {
+                    Content = "Удалить",
+                    Width = 90,
+                    Background = Brushes.Red,
+                    Foreground = Brushes.White,
+                    Margin = new Thickness(5)
+                };
+                deleteButton.Click += (s, e) => DeleteCar(car);
 
-            buttonPanel.Children.Add(editButton);
-            buttonPanel.Children.Add(deleteButton);
+                buttonPanel.Children.Add(editButton);
+                buttonPanel.Children.Add(deleteButton);
+            }
+
+
             textPanel.Children.Add(buttonPanel);
 
             Grid.SetZIndex(textPanel, 2);
@@ -131,6 +165,7 @@ namespace Lab5.Windows
             cardBorder.Child = cardGrid;
             return cardBorder;
         }
+
 
         private void EditCar(Car car)
         {
@@ -143,7 +178,7 @@ namespace Lab5.Windows
         {
             if (MessageBox.Show($"Удалить {car.Brand} {car.Model}?", "Удаление", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                using (var context = new CarSharingDBEntities2())
+                using (var context = new CarSharingDB1Entities())
                 {
                     var carToDelete = context.Car.FirstOrDefault(c => c.Car_Id == car.Car_Id);
                     if (carToDelete != null)
@@ -164,7 +199,7 @@ namespace Lab5.Windows
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            new StartWindow(null).Show();
+            new StartWindow(_currentUser).Show();
             this.Close();
         }
     }

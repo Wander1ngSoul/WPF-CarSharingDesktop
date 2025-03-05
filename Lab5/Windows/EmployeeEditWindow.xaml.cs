@@ -79,7 +79,7 @@ namespace Lab5.Windows
 
             try
             {
-                using (var context = new CarSharingDBEntities2())
+                using (var context = new CarSharingDB1Entities())
                 {
                   
                     var existingEmployee = context.Employee.FirstOrDefault(e => e.Phone == PhoneTextBox.Text && e.Employee_Id != _employeeToEdit.Employee_Id);
@@ -117,7 +117,7 @@ namespace Lab5.Windows
                 }
 
                 MessageBox.Show("Сотрудник успешно сохранен!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                new EmployeesWindow().Show();
+                new EmployeesWindow(_employeeToEdit).Show();
                 this.Close();
             }
             catch (Exception ex)
@@ -128,7 +128,7 @@ namespace Lab5.Windows
 
         private void CancelButton_Click(object sender, RoutedEventArgs eventArgs)
         {
-            new EmployeesWindow().Show();
+            new EmployeesWindow(null).Show();
             this.Close();
         }
 
@@ -139,7 +139,7 @@ namespace Lab5.Windows
             {
                 try
                 {
-                    using (var context = new CarSharingDBEntities2())
+                    using (var context = new CarSharingDB1Entities())
                     {
                         var employeeToDelete = context.Employee.FirstOrDefault(e => e.Employee_Id == _employeeToEdit.Employee_Id);
                         if (employeeToDelete != null)

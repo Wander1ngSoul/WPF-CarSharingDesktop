@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Хранилище CarSharingDBModelContainer" CdmEntityContainer="CarSharingDBEntities2">
+  <EntityContainerMapping StorageEntityContainer="Хранилище CarSharingDB1ModelContainer" CdmEntityContainer="CarSharingDB1Entities">
     <EntitySetMapping Name="Booking">
-      <EntityTypeMapping TypeName="CarSharingDBModel.Booking">
+      <EntityTypeMapping TypeName="CarSharingDB1Model.Booking">
         <MappingFragment StoreEntitySet="Booking">
           <ScalarProperty Name="Booking_Id" ColumnName="Booking_Id" />
           <ScalarProperty Name="ClientID" ColumnName="ClientID" />
@@ -15,7 +15,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Car">
-      <EntityTypeMapping TypeName="CarSharingDBModel.Car">
+      <EntityTypeMapping TypeName="CarSharingDB1Model.Car">
         <MappingFragment StoreEntitySet="Car">
           <ScalarProperty Name="Car_Id" ColumnName="Car_Id" />
           <ScalarProperty Name="Brand" ColumnName="Brand" />
@@ -29,7 +29,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Client">
-      <EntityTypeMapping TypeName="CarSharingDBModel.Client">
+      <EntityTypeMapping TypeName="CarSharingDB1Model.Client">
         <MappingFragment StoreEntitySet="Client">
           <ScalarProperty Name="Client_Id" ColumnName="Client_Id" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -42,7 +42,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Employee">
-      <EntityTypeMapping TypeName="CarSharingDBModel.Employee">
+      <EntityTypeMapping TypeName="CarSharingDB1Model.Employee">
         <MappingFragment StoreEntitySet="Employee">
           <ScalarProperty Name="Employee_Id" ColumnName="Employee_Id" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -55,7 +55,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Repair">
-      <EntityTypeMapping TypeName="CarSharingDBModel.Repair">
+      <EntityTypeMapping TypeName="CarSharingDB1Model.Repair">
         <MappingFragment StoreEntitySet="Repair">
           <ScalarProperty Name="Repair_Id" ColumnName="Repair_Id" />
           <ScalarProperty Name="CarID" ColumnName="CarID" />

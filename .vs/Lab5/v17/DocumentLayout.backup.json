@@ -3,8 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|c:\\users\\ignat\\desktop\\wpf-carsharingdesktop\\lab5\\windows\\bookingeditwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|solutionrelative:lab5\\windows\\bookingeditwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|c:\\users\\ignat\\desktop\\wpf-carsharingdesktop\\lab5\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|solutionrelative:lab5\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|c:\\users\\ignat\\desktop\\wpf-carsharingdesktop\\lab5\\.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|solutionrelative:lab5\\.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|c:\\users\\ignat\\desktop\\wpf-carsharingdesktop\\lab5\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|solutionrelative:lab5\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|c:\\users\\ignat\\desktop\\wpf-carsharingdesktop\\lab5\\windows\\startwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|solutionrelative:lab5\\windows\\startwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|c:\\users\\ignat\\desktop\\wpf-carsharingdesktop\\lab5\\windows\\bookingwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|solutionrelative:lab5\\windows\\bookingwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|c:\\users\\ignat\\desktop\\wpf-carsharingdesktop\\lab5\\windows\\carseditwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|solutionrelative:lab5\\windows\\carseditwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|c:\\users\\ignat\\desktop\\wpf-carsharingdesktop\\lab5\\windows\\bookingeditwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|solutionrelative:lab5\\windows\\bookingeditwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|c:\\users\\ignat\\desktop\\wpf-carsharingdesktop\\lab5\\windows\\clienteditwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|solutionrelative:lab5\\windows\\clienteditwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|c:\\users\\ignat\\desktop\\wpf-carsharingdesktop\\lab5\\windows\\clientswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|solutionrelative:lab5\\windows\\clientswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|c:\\users\\ignat\\desktop\\wpf-carsharingdesktop\\lab5\\windows\\carswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|solutionrelative:lab5\\windows\\carswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\lab5\\windows\\carswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{C80FFB89-0A4D-4065-B9D5-2580E93E10EE}|Lab5\\Lab5.csproj|solutionrelative:lab5\\windows\\carswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -13,19 +53,146 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 335,
+          "DockedWidth": 200,
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "BookingEditWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\Windows\\BookingEditWindow.xaml",
-              "RelativeDocumentMoniker": "Lab5\\Windows\\BookingEditWindow.xaml",
-              "ToolTip": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\Windows\\BookingEditWindow.xaml",
-              "RelativeToolTip": "Lab5\\Windows\\BookingEditWindow.xaml",
+              "Title": "App.config",
+              "DocumentMoniker": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\App.config",
+              "RelativeDocumentMoniker": "Lab5\\App.config",
+              "ToolTip": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\App.config",
+              "RelativeToolTip": "Lab5\\App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-03-05T18:39:09.327Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": ".xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\.xaml.cs",
+              "RelativeDocumentMoniker": "Lab5\\.xaml.cs",
+              "ToolTip": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\.xaml.cs",
+              "RelativeToolTip": "Lab5\\.xaml.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA0wDMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-05T18:38:40.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "Lab5\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\MainWindow.xaml",
+              "RelativeToolTip": "Lab5\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-02T21:15:49.761Z",
+              "WhenOpened": "2025-03-05T18:38:37.372Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "StartWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\Windows\\StartWindow.xaml",
+              "RelativeDocumentMoniker": "Lab5\\Windows\\StartWindow.xaml",
+              "ToolTip": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\Windows\\StartWindow.xaml",
+              "RelativeToolTip": "Lab5\\Windows\\StartWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-05T18:38:34.872Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BookingWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\Windows\\BookingWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Lab5\\Windows\\BookingWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\Windows\\BookingWindow.xaml.cs",
+              "RelativeToolTip": "Lab5\\Windows\\BookingWindow.xaml.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAuwCIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-05T18:36:26.253Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BookingEditWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\Windows\\BookingEditWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Lab5\\Windows\\BookingEditWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\Windows\\BookingEditWindow.xaml.cs",
+              "RelativeToolTip": "Lab5\\Windows\\BookingEditWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-05T18:36:18.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CarsEditWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\Windows\\CarsEditWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Lab5\\Windows\\CarsEditWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\Windows\\CarsEditWindow.xaml.cs",
+              "RelativeToolTip": "Lab5\\Windows\\CarsEditWindow.xaml.cs",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAWwGAAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-05T18:24:31.616Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ClientsWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\Windows\\ClientsWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Lab5\\Windows\\ClientsWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\Windows\\ClientsWindow.xaml.cs",
+              "RelativeToolTip": "Lab5\\Windows\\ClientsWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-05T17:54:24.671Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ClientEditWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\Windows\\ClientEditWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Lab5\\Windows\\ClientEditWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\Windows\\ClientEditWindow.xaml.cs",
+              "RelativeToolTip": "Lab5\\Windows\\ClientEditWindow.xaml.cs",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAIwGQAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-05T17:55:12.879Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CarsWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\Windows\\CarsWindow.xaml",
+              "RelativeDocumentMoniker": "Lab5\\Windows\\CarsWindow.xaml",
+              "ToolTip": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\Windows\\CarsWindow.xaml",
+              "RelativeToolTip": "Lab5\\Windows\\CarsWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-04T19:05:52.701Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CarsWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\Windows\\CarsWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Lab5\\Windows\\CarsWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\ignat\\Desktop\\WPF-CarSharingDesktop\\Lab5\\Windows\\CarsWindow.xaml.cs",
+              "RelativeToolTip": "Lab5\\Windows\\CarsWindow.xaml.cs",
+              "ViewState": "AgIAAJ8AAAAAAAAAAAAtwMoAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-04T19:05:05.611Z",
               "EditorCaption": ""
             }
           ]

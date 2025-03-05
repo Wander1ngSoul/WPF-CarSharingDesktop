@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Хранилище CarSharingDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="Хранилище CarSharingDB1Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Booking">
     <Key>
       <PropertyRef Name="Booking_Id" />
@@ -21,7 +21,7 @@
     <Property Name="Model" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Year" Type="int" Nullable="false" />
     <Property Name="LicensePlate" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Status" Type="varchar(max)" Nullable="false" />
     <Property Name="RentalPrice" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="Photo" Type="varchar(max)" Nullable="false" />
   </EntityType>
@@ -109,7 +109,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Хранилище CarSharingDBModelContainer">
+  <EntityContainer Name="Хранилище CarSharingDB1ModelContainer">
     <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />

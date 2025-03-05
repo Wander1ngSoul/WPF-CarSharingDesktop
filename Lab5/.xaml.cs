@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using static Lab5.Windows.CarsWindow;
 
 namespace Lab5
 {
@@ -16,7 +17,7 @@ namespace Lab5
             string email = EmailTextBox.Text;
             string password = PasswordBox.Password;
 
-            using (var context = new CarSharingDBEntities2())
+            using (var context = new CarSharingDB1Entities())
             {
                 try
                 {
@@ -27,9 +28,10 @@ namespace Lab5
                     {
                         MessageBox.Show("Успешный вход!", "Авторизация", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                        // Создаем окно StartWindow и передаем имя сотрудника
+                        AuthService.SetCurrentUser(employee.Position);
+
                         this.Hide();
-                        var startWindow = new StartWindow(employee.FirstName); // Передаем имя сотрудника
+                        var startWindow = new StartWindow(employee);
                         startWindow.Show();
                         this.Close();
                     }
@@ -44,5 +46,6 @@ namespace Lab5
                 }
             }
         }
+
     }
 }
