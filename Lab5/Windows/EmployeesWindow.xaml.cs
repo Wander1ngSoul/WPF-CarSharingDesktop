@@ -7,71 +7,82 @@ namespace Lab5.Windows
 {
     public partial class EmployeesWindow : Window
     {
-        private readonly CarSharingDB1Entities _context;
-        private readonly Employee _currentUser;
+        private Employee _currentUser;
+        private Employee _mainemployee;
 
-        public EmployeesWindow(Employee currentUser)
+        public EmployeesWindow(Employee mainUser,Employee currentUser)
         {
             InitializeComponent();
-            _context = new CarSharingDB1Entities();
+            _mainemployee = mainUser;
             _currentUser = currentUser;
             LoadEmployees();
         }
 
-        public void LoadEmployees()
+        private void LoadEmployees()
         {
-            var employees = _context.Employee.ToList();
-            EmployeesListBox.ItemsSource = employees;
+            using (var context = new CarSharingDB1Entities())
+            {
+                EmployeesListBox.ItemsSource = context.Employee.ToList();
+            }
+        }
+
+        private void CreateEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            if (_mainemployee.Position == "Manager")
+            {
+                var createEmployeeWindow = new EmployeeEditWindow(null, _mainemployee);
+                createEmployeeWindow.Show();
+                this.Close();
+            }
+            else {MessageBox.Show("У вас нет прав.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning); }
         }
 
         private void EditEmployee_Click(object sender, RoutedEventArgs e)
         {
-            if (_currentUser.Position != "Manager")
+            if (_mainemployee.Position == "Manager")
             {
-                MessageBox.Show("У вас нет прав для редактирования сотрудников.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                if (EmployeesListBox.SelectedItem is Employee selectedEmployee)
+                {
+                    var editEmployeeWindow = new EmployeeEditWindow(selectedEmployee, _mainemployee);
+                    editEmployeeWindow.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Выберите сотрудника для редактирования.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
-
-            var button = sender as Button;
-            var employee = button?.DataContext as Employee;
-
-            if (employee != null)
+            else
             {
-                var employeeEditWindow = new EmployeeEditWindow(employee);  
-                employeeEditWindow.Show();
-                this.Close();
+                MessageBox.Show("У вас нет прав для редактирования.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
-        private void DeleteEmployee_Click(object sender, RoutedEventArgs eventArgs)
+
+
+        private void DeleteEmployee_Click(object sender, RoutedEventArgs e)
         {
-            if (_currentUser.Position != "Manager")
+            if (_mainemployee.Position == "Manager" && EmployeesListBox.SelectedItem is Employee selectedEmployee)
             {
-                MessageBox.Show("У вас нет прав для удаления сотрудников.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            var button = sender as Button;
-            var employee = button?.DataContext as Employee;
-
-            if (employee != null)
-            {
-                var result = MessageBox.Show($"Вы уверены, что хотите удалить сотрудника {employee.FirstName} {employee.LastName}?", "Удаление", MessageBoxButton.YesNo);
-                if (result == MessageBoxResult.Yes)
+                if (MessageBox.Show("Вы уверены, что хотите удалить сотрудника?", "Подтверждение",
+                                    MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     try
                     {
-                        var employeeToRemove = _context.Employee.FirstOrDefault(e => e.Employee_Id == employee.Employee_Id);
-                        if (employeeToRemove != null)
+                        using (var context = new CarSharingDB1Entities())
                         {
-                            _context.Employee.Remove(employeeToRemove);
-                            _context.SaveChanges();
-                            MessageBox.Show("Сотрудник удалён.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                            LoadEmployees();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Сотрудник не найден в базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            var employeeToRemove = context.Employee.FirstOrDefault(c => c.Employee_Id == selectedEmployee.Employee_Id);
+                            if (employeeToRemove != null)
+                            {
+                                context.Employee.Remove(employeeToRemove);
+                                context.SaveChanges();
+                                MessageBox.Show("Сотрудник удалён.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                                LoadEmployees();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Сотрудник не найден в базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -80,24 +91,13 @@ namespace Lab5.Windows
                     }
                 }
             }
+            else { MessageBox.Show("Выберите сотрудника для удаления или у вас нет прав.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning); }
         }
 
-        private void CreateEmployee_Click(object sender, RoutedEventArgs e)
-        {
-            if (_currentUser.Position != "Manager")
-            {
-                MessageBox.Show("У вас нет прав для создания сотрудников.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            var employeeEditWindow = new EmployeeEditWindow(); 
-            employeeEditWindow.Show();
-            this.Close();
-        }
 
         private void ReverseBtn_Click(object sender, RoutedEventArgs e)
         {
-            new StartWindow(_currentUser).Show();
+            new StartWindow(_mainemployee).Show();
             this.Close();
         }
     }

@@ -10,20 +10,22 @@ namespace Lab5.Windows
     public partial class EmployeeEditWindow : Window
     {
         private Employee _employeeToEdit;
+        private Employee _employeeToMain;
 
-        public EmployeeEditWindow(Employee employee = null)
+        public EmployeeEditWindow(Employee employeeEdit, Employee employeeMain)
         {
             InitializeComponent();
+            _employeeToMain = employeeMain;
 
-            if (employee != null)
+            if (employeeEdit != null)
             {
-                _employeeToEdit = employee;
-                FirstNameTextBox.Text = employee.FirstName;
-                LastNameTextBox.Text = employee.LastName;
-                PositionComboBox.SelectedItem = PositionComboBox.Items.Cast<ComboBoxItem>().FirstOrDefault(x => x.Content.ToString() == employee.Position);
-                EmailTextBox.Text = employee.Email;
-                PhoneTextBox.Text = employee.Phone;
-                PasswordTextBox.Password = employee.Password;
+                _employeeToEdit = employeeEdit;
+                FirstNameTextBox.Text = employeeEdit.FirstName;
+                LastNameTextBox.Text = employeeEdit.LastName;
+                PositionComboBox.SelectedItem = PositionComboBox.Items.Cast<ComboBoxItem>().FirstOrDefault(x => x.Content.ToString() == employeeEdit.Position);
+                EmailTextBox.Text = employeeEdit.Email;
+                PhoneTextBox.Text = employeeEdit.Phone;
+                PasswordTextBox.Password = employeeEdit.Password;
             }
             else
             {
@@ -117,7 +119,7 @@ namespace Lab5.Windows
                 }
 
                 MessageBox.Show("Сотрудник успешно сохранен!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                new EmployeesWindow(_employeeToEdit).Show();
+                new EmployeesWindow(_employeeToMain, _employeeToEdit).Show();
                 this.Close();
             }
             catch (Exception ex)
@@ -128,7 +130,7 @@ namespace Lab5.Windows
 
         private void CancelButton_Click(object sender, RoutedEventArgs eventArgs)
         {
-            new EmployeesWindow(null).Show();
+            new EmployeesWindow(_employeeToMain,_employeeToEdit).Show();
             this.Close();
         }
 

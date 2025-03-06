@@ -4,33 +4,27 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Win32;
+using System.Data.Entity.Validation;
 
 namespace Lab5.Windows
 {
     public partial class CarsEditWindow : Window
     {
         private Car _carToEdit;
+        private Employee _employee;
 
-        public CarsEditWindow(Car car = null)
+        public CarsEditWindow(Employee employee, Car car = null)
         {
             InitializeComponent();
             InitializeBrandComboBox();
+            InitializeStatusComboBox();
 
+            _carToEdit = car ?? new Car();
             if (car != null)
             {
-                _carToEdit = car;
-                BrandComboBox.SelectedItem = car.Brand;
-                ModelComboBox.SelectedItem = car.Model;
-                YearDatePicker.SelectedDate = new DateTime(car.Year, 1, 1);
-                LicensePlateTextBox.Text = car.LicensePlate;
-                RentalPriceTextBox.Text = car.RentalPrice.ToString();
-                PhotoTextBox.Text = car.Photo;
-                StatusComboBox.SelectedItem = car.Status;
+                PopulateFields(car);
             }
-            else
-            {
-                _carToEdit = new Car();
-            }
+            _employee = employee;
         }
 
         private void InitializeBrandComboBox()
@@ -42,45 +36,28 @@ namespace Lab5.Windows
             BrandComboBox.Items.Add("Ford");
         }
 
+        private void InitializeStatusComboBox()
+        {
+            StatusComboBox.Items.Add("available");
+            StatusComboBox.Items.Add("reserved");
+            StatusComboBox.Items.Add("in repair");
+        }
+
+        private void PopulateFields(Car car)
+        {
+            BrandComboBox.SelectedItem = car.Brand;
+            ModelComboBox.SelectedItem = car.Model;
+            YearDatePicker.SelectedDate = new DateTime(car.Year, 1, 1);
+            LicensePlateTextBox.Text = car.LicensePlate;
+            RentalPriceTextBox.Text = car.RentalPrice.ToString("F2");
+            PhotoTextBox.Text = car.Photo;
+            StatusComboBox.SelectedItem = car.Status;
+        }
+
         private void SaveCar_Click(object sender, RoutedEventArgs e)
         {
-            if (BrandComboBox.SelectedItem == null || ModelComboBox.SelectedItem == null ||
-                YearDatePicker.SelectedDate == null || string.IsNullOrEmpty(LicensePlateTextBox.Text) ||
-                string.IsNullOrEmpty(RentalPriceTextBox.Text) || string.IsNullOrEmpty(PhotoTextBox.Text))
+            if (!ValidateInputs())
             {
-                MessageBox.Show("Пожалуйста, заполните все поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            if (!decimal.TryParse(RentalPriceTextBox.Text, out decimal rentalPrice))
-            {
-                MessageBox.Show("Цена аренды должна быть числом.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            if (!File.Exists(PhotoTextBox.Text))
-            {
-                MessageBox.Show("Выбранное фото не существует.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            string licensePlatePattern = @"^[АВЕКМНОРСТУХ]\d{3}[АВЕКМНОРСТУХ]{2}\s\d{2,3}$";
-            if (!Regex.IsMatch(LicensePlateTextBox.Text, licensePlatePattern, RegexOptions.IgnoreCase))
-            {
-                MessageBox.Show("Некорректный формат гос. номера. Пример: А123ВС 99", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            if (StatusComboBox.SelectedItem == null)
-            {
-                MessageBox.Show("Выберите статус автомобиля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            var selectedStatus = StatusComboBox.SelectedItem.ToString();
-
-            if (selectedStatus.Length > 20)
-            {
-                MessageBox.Show("Статус не должен превышать 20 символов.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -90,48 +67,113 @@ namespace Lab5.Windows
                 _carToEdit.Model = ModelComboBox.SelectedItem.ToString();
                 _carToEdit.Year = YearDatePicker.SelectedDate.Value.Year;
                 _carToEdit.LicensePlate = LicensePlateTextBox.Text;
-                _carToEdit.RentalPrice = rentalPrice;
+                _carToEdit.RentalPrice = decimal.Parse(RentalPriceTextBox.Text);
                 _carToEdit.Photo = PhotoTextBox.Text;
-                _carToEdit.Status = selectedStatus;
+                _carToEdit.Status = StatusComboBox.SelectedItem.ToString();
 
+                
                 using (var context = new CarSharingDB1Entities())
                 {
                     if (_carToEdit.Car_Id == 0)
                     {
-                        context.Car.Add(_carToEdit);
+                        context.Car.Add(_carToEdit); 
                     }
                     else
                     {
-                        context.Entry(_carToEdit).State = System.Data.Entity.EntityState.Modified;
+                        context.Entry(_carToEdit).State = System.Data.Entity.EntityState.Modified; // Редактирование существующего
                     }
+
                     context.SaveChanges();
                 }
 
-                MessageBox.Show("Автомобиль успешно сохранен!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                new CarsWindow().Show();
-                this.Close();
+                ShowSuccessMessage();
+                NavigateToCarsWindow();
             }
-            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            catch (DbEntityValidationException dbEx)
             {
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        MessageBox.Show($"Свойство: {validationError.PropertyName} - Ошибка: {validationError.ErrorMessage}",
-                            "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                }
+                HandleValidationErrors(dbEx);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при сохранении данных: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowErrorMessage($"Ошибка при сохранении данных: {ex.Message}");
             }
+        }
+
+        private bool ValidateInputs()
+        {
+            if (BrandComboBox.SelectedItem == null || ModelComboBox.SelectedItem == null ||
+                YearDatePicker.SelectedDate == null || string.IsNullOrEmpty(LicensePlateTextBox.Text) ||
+                string.IsNullOrEmpty(RentalPriceTextBox.Text) || string.IsNullOrEmpty(PhotoTextBox.Text))
+            {
+                ShowErrorMessage("Пожалуйста, заполните все поля.");
+                return false;
+            }
+
+            if (!decimal.TryParse(RentalPriceTextBox.Text, out decimal rentalPrice))
+            {
+                ShowErrorMessage("Цена аренды должна быть числом.");
+                return false;
+            }
+
+            if (!File.Exists(PhotoTextBox.Text))
+            {
+                ShowErrorMessage("Выбранное фото не существует.");
+                return false;
+            }
+
+            string licensePlatePattern = @"^[АВЕКМНОРСТУХ]\d{3}[АВЕКМНОРСТУХ]{2}\s\d{2,3}$";
+            if (!Regex.IsMatch(LicensePlateTextBox.Text, licensePlatePattern, RegexOptions.IgnoreCase))
+            {
+                ShowErrorMessage("Некорректный формат гос. номера. Пример: А123ВС 99");
+                return false;
+            }
+
+            if (StatusComboBox.SelectedItem == null)
+            {
+                ShowErrorMessage("Выберите статус автомобиля.");
+                return false;
+            }
+
+            var selectedStatus = StatusComboBox.SelectedItem.ToString();
+            if (selectedStatus.Length > 200)
+            {
+                ShowErrorMessage("Статус не должен превышать 200 символов.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private void ShowSuccessMessage()
+        {
+            MessageBox.Show("Автомобиль успешно сохранен!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void NavigateToCarsWindow()
+        {
+            new CarsWindow(_employee).Show();
+            this.Close();
+        }
+
+        private void HandleValidationErrors(DbEntityValidationException dbEx)
+        {
+            foreach (var validationErrors in dbEx.EntityValidationErrors)
+            {
+                foreach (var validationError in validationErrors.ValidationErrors)
+                {
+                    ShowErrorMessage($"Свойство: {validationError.PropertyName} - Ошибка: {validationError.ErrorMessage}");
+                }
+            }
+        }
+
+        private void ShowErrorMessage(string message)
+        {
+            MessageBox.Show(message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            new CarsWindow().Show();
-            this.Close();
+            NavigateToCarsWindow();
         }
 
         private void BrowsePhoto_Click(object sender, RoutedEventArgs e)

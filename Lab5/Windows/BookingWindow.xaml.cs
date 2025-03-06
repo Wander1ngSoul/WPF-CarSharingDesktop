@@ -151,7 +151,7 @@ namespace Lab5.Windows
 
         private void EditBooking(Booking booking)
         {
-            var bookingEditWindow = new BookingEditWindow(booking);
+            var bookingEditWindow = new BookingEditWindow(_currentUser,booking);
             bookingEditWindow.BookingUpdated += (sender, e) => LoadBookings();
             bookingEditWindow.Show();
             this.Close();
@@ -161,7 +161,7 @@ namespace Lab5.Windows
         {
             if (_currentUser.Position == "Manager")
             {
-                var bookingEditWindow = new BookingEditWindow(null);
+                var bookingEditWindow = new BookingEditWindow(_currentUser,null);
                 bookingEditWindow.BookingUpdated += (sender, e) => LoadBookings();
                 bookingEditWindow.Show();
                 this.Close();

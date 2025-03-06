@@ -27,7 +27,7 @@ namespace Lab5
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new CarsWindow().Show();
+            new CarsWindow(_currentUser).Show();
             this.Close();
         }
 
@@ -39,7 +39,7 @@ namespace Lab5
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            new EmployeesWindow(_currentUser).Show();
+            new EmployeesWindow(_currentUser, null).Show();
             this.Close();
         }
 

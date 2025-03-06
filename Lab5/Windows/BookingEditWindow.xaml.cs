@@ -8,11 +8,13 @@ namespace Lab5.Windows
     public partial class BookingEditWindow : Window
     {
         private Booking _booking;
+        private Employee employee;
         private CarSharingDB1Entities _context = new CarSharingDB1Entities();
 
-        public BookingEditWindow(Booking booking = null)
+        public BookingEditWindow(Employee _employee, Booking booking)
         {
             InitializeComponent();
+            employee = _employee;
             _booking = booking;
 
             var clients = _context.Client
@@ -28,6 +30,7 @@ namespace Lab5.Windows
             ClientComboBox.DisplayMemberPath = "FullName";
             ClientComboBox.SelectedValuePath = "Client_Id";
 
+
             var cars = _context.Car
                                .ToList()
                                .Select(c => new
@@ -40,6 +43,7 @@ namespace Lab5.Windows
             CarComboBox.ItemsSource = cars;
             CarComboBox.DisplayMemberPath = "CarDetails";
             CarComboBox.SelectedValuePath = "Car_Id";
+
 
             if (_booking != null)
             {
@@ -56,7 +60,8 @@ namespace Lab5.Windows
                 StatusComboBox.SelectedItem = "confirmed";
             }
 
-            StatusComboBox.Items.Clear();
+
+            StatusComboBox.ItemsSource = null; 
             StatusComboBox.ItemsSource = new[] { "confirmed", "canceled" };
 
             CarComboBox.SelectionChanged += CarComboBox_SelectionChanged;
@@ -71,7 +76,7 @@ namespace Lab5.Windows
 
         private void CarComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (_booking != null)
+            if (_booking != null && CarComboBox.SelectedValue != null)
             {
                 _booking.CarID = (long)CarComboBox.SelectedValue;
             }
@@ -84,6 +89,7 @@ namespace Lab5.Windows
                 _booking = new Booking();
                 _context.Booking.Add(_booking);
             }
+
 
             if (StartDatePicker.SelectedDate == null || EndDatePicker.SelectedDate == null)
             {
@@ -99,7 +105,8 @@ namespace Lab5.Windows
 
             _booking.StartDate = StartDatePicker.SelectedDate.Value;
             _booking.EndDate = EndDatePicker.SelectedDate.Value;
-            _booking.Status = StatusComboBox.SelectedItem.ToString();
+            _booking.Status = StatusComboBox.SelectedItem?.ToString();
+
 
             if (decimal.TryParse(PriceTextBox.Text, out decimal price))
             {
@@ -111,6 +118,7 @@ namespace Lab5.Windows
                 return;
             }
 
+
             if (ClientComboBox.SelectedValue == null)
             {
                 MessageBox.Show("Не выбран клиент для бронирования.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -118,18 +126,21 @@ namespace Lab5.Windows
             }
             _booking.ClientID = (long)ClientComboBox.SelectedValue;
 
+           
             if (CarComboBox.SelectedValue == null)
             {
                 MessageBox.Show("Не выбран автомобиль для бронирования.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            _booking.CarID = (long)CarComboBox.SelectedValue;
 
             try
             {
                 _context.SaveChanges();
                 MessageBox.Show("Бронирование успешно сохранено.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                OnBookingUpdated();  
-                new BookingWindow(null).Show();
+                OnBookingUpdated();
+
+                new BookingWindow(employee).Show();
                 this.Close();
             }
             catch (Exception ex)
@@ -140,7 +151,7 @@ namespace Lab5.Windows
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            new BookingWindow(null).Show();
+            new BookingWindow(employee).Show();
             this.Close();
         }
     }

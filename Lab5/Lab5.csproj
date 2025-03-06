@@ -64,6 +64,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Booking.cs">
+      <DependentUpon>Modeldb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Car.cs">
+      <DependentUpon>Modeldb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Client.cs">
+      <DependentUpon>Modeldb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employee.cs">
+      <DependentUpon>Modeldb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modeldb.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Modeldb.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modeldb.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Modeldb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modeldb.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Modeldb.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Repair.cs">
+      <DependentUpon>Modeldb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Windows\BookingEditWindow.xaml.cs">
       <DependentUpon>BookingEditWindow.xaml</DependentUpon>
     </Compile>
@@ -158,6 +188,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Modeldb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Modeldb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Modeldb.edmx.diagram">
+      <DependentUpon>Modeldb.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -169,6 +206,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modeldb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Modeldb.edmx</DependentUpon>
+      <LastGenOutput>Modeldb.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Modeldb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Modeldb.edmx</DependentUpon>
+      <LastGenOutput>Modeldb.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

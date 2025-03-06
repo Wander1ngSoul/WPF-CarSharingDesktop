@@ -169,7 +169,7 @@ namespace Lab5.Windows
 
         private void EditCar(Car car)
         {
-            var carEditWindow = new CarsEditWindow(car);
+            var carEditWindow = new CarsEditWindow(_currentUser,car);
             carEditWindow.Show();
             this.Close();
         }
@@ -193,7 +193,7 @@ namespace Lab5.Windows
 
         private void AddCar_Click(object sender, RoutedEventArgs e)
         {
-            new CarsEditWindow().Show();
+            new CarsEditWindow(_currentUser, null).Show();
             this.Close();
         }
 
