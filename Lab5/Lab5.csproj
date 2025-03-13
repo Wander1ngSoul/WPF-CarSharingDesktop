@@ -94,6 +94,9 @@
     <Compile Include="Repair.cs">
       <DependentUpon>Modeldb.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Modeldb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Windows\BookingEditWindow.xaml.cs">
       <DependentUpon>BookingEditWindow.xaml</DependentUpon>
     </Compile>

@@ -81,7 +81,7 @@ namespace Lab5.Windows
 
             try
             {
-                using (var context = new CarSharingDB1Entities())
+                using (var context = new CarSharingDBEntities())
                 {
                   
                     var existingEmployee = context.Employee.FirstOrDefault(e => e.Phone == PhoneTextBox.Text && e.Employee_Id != _employeeToEdit.Employee_Id);
@@ -141,7 +141,7 @@ namespace Lab5.Windows
             {
                 try
                 {
-                    using (var context = new CarSharingDB1Entities())
+                    using (var context = new CarSharingDBEntities())
                     {
                         var employeeToDelete = context.Employee.FirstOrDefault(e => e.Employee_Id == _employeeToEdit.Employee_Id);
                         if (employeeToDelete != null)

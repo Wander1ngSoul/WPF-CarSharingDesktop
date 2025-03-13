@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Хранилище CarSharingDB1Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="Хранилище CarSharingDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Booking">
     <Key>
       <PropertyRef Name="Booking_Id" />
@@ -61,8 +61,20 @@
     <Property Name="ProblemDescription" Type="text" />
     <Property Name="RepairCost" Type="decimal" Precision="10" Scale="2" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <Association Name="FK__Booking__CarID__403A8C7D">
-    <End Role="Car" Type="Self.Car" Multiplicity="0..1" />
+    <End Role="Car" Type="Self.Car" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Car">
@@ -74,7 +86,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Booking__ClientI__3F466844">
-    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Client">
@@ -86,7 +100,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Repair__CarID__46E78A0C">
-    <End Role="Car" Type="Self.Car" Multiplicity="0..1" />
+    <End Role="Car" Type="Self.Car" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Car">
@@ -98,7 +114,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Repair__Employee__47DBAE45">
-    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Employee">
@@ -109,12 +127,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Хранилище CarSharingDB1ModelContainer">
+  <EntityContainer Name="Хранилище CarSharingDBModelContainer">
     <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Repair" EntityType="Self.Repair" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__Booking__CarID__403A8C7D" Association="Self.FK__Booking__CarID__403A8C7D">
       <End Role="Car" EntitySet="Car" />
       <End Role="Booking" EntitySet="Booking" />

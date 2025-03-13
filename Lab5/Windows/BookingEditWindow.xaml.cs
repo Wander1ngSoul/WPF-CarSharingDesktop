@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,7 +10,7 @@ namespace Lab5.Windows
     {
         private Booking _booking;
         private Employee employee;
-        private CarSharingDB1Entities _context = new CarSharingDB1Entities();
+        private CarSharingDBEntities _context = new CarSharingDBEntities();
 
         public BookingEditWindow(Employee _employee, Booking booking)
         {
@@ -30,7 +31,6 @@ namespace Lab5.Windows
             ClientComboBox.DisplayMemberPath = "FullName";
             ClientComboBox.SelectedValuePath = "Client_Id";
 
-
             var cars = _context.Car
                                .ToList()
                                .Select(c => new
@@ -43,7 +43,6 @@ namespace Lab5.Windows
             CarComboBox.ItemsSource = cars;
             CarComboBox.DisplayMemberPath = "CarDetails";
             CarComboBox.SelectedValuePath = "Car_Id";
-
 
             if (_booking != null)
             {
@@ -60,8 +59,7 @@ namespace Lab5.Windows
                 StatusComboBox.SelectedItem = "confirmed";
             }
 
-
-            StatusComboBox.ItemsSource = null; 
+            StatusComboBox.ItemsSource = null;
             StatusComboBox.ItemsSource = new[] { "confirmed", "canceled" };
 
             CarComboBox.SelectionChanged += CarComboBox_SelectionChanged;
@@ -89,6 +87,11 @@ namespace Lab5.Windows
                 _booking = new Booking();
                 _context.Booking.Add(_booking);
             }
+            else
+            {
+                _booking = _context.Booking
+                                    .FirstOrDefault(b => b.Booking_Id == _booking.Booking_Id);
+            }
 
 
             if (StartDatePicker.SelectedDate == null || EndDatePicker.SelectedDate == null)
@@ -107,7 +110,6 @@ namespace Lab5.Windows
             _booking.EndDate = EndDatePicker.SelectedDate.Value;
             _booking.Status = StatusComboBox.SelectedItem?.ToString();
 
-
             if (decimal.TryParse(PriceTextBox.Text, out decimal price))
             {
                 _booking.Price = price;
@@ -118,7 +120,6 @@ namespace Lab5.Windows
                 return;
             }
 
-
             if (ClientComboBox.SelectedValue == null)
             {
                 MessageBox.Show("Не выбран клиент для бронирования.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -126,7 +127,6 @@ namespace Lab5.Windows
             }
             _booking.ClientID = (long)ClientComboBox.SelectedValue;
 
-           
             if (CarComboBox.SelectedValue == null)
             {
                 MessageBox.Show("Не выбран автомобиль для бронирования.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -136,6 +136,15 @@ namespace Lab5.Windows
 
             try
             {
+              
+                if (_booking.Booking_Id == 0)
+                {                  
+                    _context.Booking.Add(_booking);
+                }
+                else
+                {
+                    _context.Entry(_booking).State = EntityState.Modified;
+                }
                 _context.SaveChanges();
                 MessageBox.Show("Бронирование успешно сохранено.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                 OnBookingUpdated();

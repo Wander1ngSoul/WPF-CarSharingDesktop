@@ -4,16 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="584f1738f7444c60bd07e05882099b0f" Name="Diagram1">
-        <EntityTypeShape EntityType="CarSharingDB1Model.Booking" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarSharingDB1Model.Car" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarSharingDB1Model.Client" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarSharingDB1Model.Employee" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarSharingDB1Model.Repair" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
-        <AssociationConnector Association="CarSharingDB1Model.FK__Booking__CarID__403A8C7D" ManuallyRouted="false" />
-        <AssociationConnector Association="CarSharingDB1Model.FK__Booking__ClientI__3F466844" ManuallyRouted="false" />
-        <AssociationConnector Association="CarSharingDB1Model.FK__Repair__CarID__46E78A0C" ManuallyRouted="false" />
-        <AssociationConnector Association="CarSharingDB1Model.FK__Repair__Employee__47DBAE45" ManuallyRouted="false" />
+      <Diagram DiagramId="cd0a6db1fc7a43fdb27ce40b5568637a" Name="Diagram1">
+        <EntityTypeShape EntityType="CarSharingDBModel.Booking" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingDBModel.Car" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingDBModel.Client" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingDBModel.Employee" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingDBModel.Repair" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarSharingDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <AssociationConnector Association="CarSharingDBModel.FK__Booking__CarID__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingDBModel.FK__Booking__ClientI__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingDBModel.FK__Repair__CarID__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="CarSharingDBModel.FK__Repair__Employee__47DBAE45" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

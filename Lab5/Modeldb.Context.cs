@@ -13,10 +13,10 @@ namespace Lab5
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CarSharingDB1Entities : DbContext
+    public partial class CarSharingDBEntities : DbContext
     {
-        public CarSharingDB1Entities()
-            : base("name=CarSharingDB1Entities")
+        public CarSharingDBEntities()
+            : base("name=CarSharingDBEntities")
         {
         }
     
@@ -30,5 +30,6 @@ namespace Lab5
         public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Repair> Repair { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

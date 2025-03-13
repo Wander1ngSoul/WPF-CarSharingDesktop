@@ -72,7 +72,7 @@ namespace Lab5.Windows
                 _carToEdit.Status = StatusComboBox.SelectedItem.ToString();
 
                 
-                using (var context = new CarSharingDB1Entities())
+                using (var context = new CarSharingDBEntities())
                 {
                     if (_carToEdit.Car_Id == 0)
                     {

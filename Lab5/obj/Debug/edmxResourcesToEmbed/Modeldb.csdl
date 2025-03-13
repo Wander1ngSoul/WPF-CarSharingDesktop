@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="CarSharingDB1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="CarSharingDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Booking">
     <Key>
       <PropertyRef Name="Booking_Id" />
@@ -69,8 +69,20 @@
     <NavigationProperty Name="Car" Relationship="Self.FK__Repair__CarID__46E78A0C" FromRole="Repair" ToRole="Car" />
     <NavigationProperty Name="Employee" Relationship="Self.FK__Repair__Employee__47DBAE45" FromRole="Repair" ToRole="Employee" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
   <Association Name="FK__Booking__CarID__403A8C7D">
-    <End Role="Car" Type="Self.Car" Multiplicity="0..1" />
+    <End Role="Car" Type="Self.Car" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Car">
@@ -82,7 +94,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Booking__ClientI__3F466844">
-    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Client">
@@ -94,7 +108,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Repair__CarID__46E78A0C">
-    <End Role="Car" Type="Self.Car" Multiplicity="0..1" />
+    <End Role="Car" Type="Self.Car" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Car">
@@ -106,7 +122,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Repair__Employee__47DBAE45">
-    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Employee">
@@ -117,12 +135,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="CarSharingDB1Entities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="CarSharingDBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Booking" EntityType="Self.Booking" />
     <EntitySet Name="Car" EntityType="Self.Car" />
     <EntitySet Name="Client" EntityType="Self.Client" />
     <EntitySet Name="Employee" EntityType="Self.Employee" />
     <EntitySet Name="Repair" EntityType="Self.Repair" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <AssociationSet Name="FK__Booking__CarID__403A8C7D" Association="Self.FK__Booking__CarID__403A8C7D">
       <End Role="Car" EntitySet="Car" />
       <End Role="Booking" EntitySet="Booking" />

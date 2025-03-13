@@ -55,7 +55,7 @@ namespace Lab5.Windows
                 _clientToEdit.Phone = phone;
                 _clientToEdit.Password = password;
 
-                using (var context = new CarSharingDB1Entities())
+                using (var context = new CarSharingDBEntities())
                 {
                     if (_clientToEdit.Client_Id == 0)
                     {

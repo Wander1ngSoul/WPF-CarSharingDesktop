@@ -55,5 +55,12 @@ namespace Lab5
                 MessageBox.Show("Ошибка: текущий пользователь не был передан.");
             }
         }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            this.Close();
+
+        }
     }
 }

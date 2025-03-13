@@ -20,7 +20,7 @@ namespace Lab5.Windows
 
         private void LoadEmployees()
         {
-            using (var context = new CarSharingDB1Entities())
+            using (var context = new CarSharingDBEntities())
             {
                 EmployeesListBox.ItemsSource = context.Employee.ToList();
             }
@@ -69,7 +69,7 @@ namespace Lab5.Windows
                 {
                     try
                     {
-                        using (var context = new CarSharingDB1Entities())
+                        using (var context = new CarSharingDBEntities())
                         {
                             var employeeToRemove = context.Employee.FirstOrDefault(c => c.Employee_Id == selectedEmployee.Employee_Id);
                             if (employeeToRemove != null)

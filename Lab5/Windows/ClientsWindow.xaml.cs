@@ -23,7 +23,7 @@ namespace Lab5.Windows
 
         private void LoadClients()
         {
-            using (var context = new CarSharingDB1Entities())
+            using (var context = new CarSharingDBEntities())
             {
                 ClientsDataGrid.ItemsSource = context.Client.ToList();
             }
@@ -66,7 +66,7 @@ namespace Lab5.Windows
                 {
                     try
                     {
-                        using (var context = new CarSharingDB1Entities())
+                        using (var context = new CarSharingDBEntities())
                         {
                             var clientToRemove = context.Client.FirstOrDefault(c => c.Client_Id == selectedClient.Client_Id);
                             if (clientToRemove != null)

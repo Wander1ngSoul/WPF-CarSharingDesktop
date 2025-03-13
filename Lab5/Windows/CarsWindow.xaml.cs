@@ -36,7 +36,7 @@ namespace Lab5.Windows
         private void LoadCars()
         {
             CarsPanel.Children.Clear();
-            using (var context = new CarSharingDB1Entities())
+            using (var context = new CarSharingDBEntities())
             {
                 var cars = context.Car.ToList();
                 foreach (var car in cars)
@@ -178,7 +178,7 @@ namespace Lab5.Windows
         {
             if (MessageBox.Show($"Удалить {car.Brand} {car.Model}?", "Удаление", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                using (var context = new CarSharingDB1Entities())
+                using (var context = new CarSharingDBEntities())
                 {
                     var carToDelete = context.Car.FirstOrDefault(c => c.Car_Id == car.Car_Id);
                     if (carToDelete != null)

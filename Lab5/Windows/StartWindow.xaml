@@ -14,108 +14,50 @@
     </Window.Background>
 
     <Grid>
-       
         <TextBlock x:Name="WelcomeTextBlock" FontSize="22" FontWeight="Bold" FontFamily="Segoe UI" 
                    Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20"/>
 
-        
         <TextBlock Text="Выберите одну из кнопок, чтобы попасть на соответствующую страницу с таблицей." 
                    FontSize="14" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" 
                    Margin="0,60,0,0"/>
 
-        
         <UniformGrid Rows="2" Columns="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20">
-
-            
+            <!-- Кнопки для других функций -->
             <Button Content="Автомобили" Width="120" Height="35" Margin="10"
                     FontWeight="Bold" Background="#E74C3C" Foreground="White"
-                    BorderBrush="Transparent" BorderThickness="0" Click="Button_Click">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#E74C3C"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="BorderBrush" Value="Transparent"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="Padding" Value="5"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#C0392B"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#A93226"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-
-            
+                    BorderBrush="Transparent" BorderThickness="0" Click="Button_Click"/>
             <Button Content="Клиенты" Width="120" Height="35" Margin="10"
                     FontWeight="Bold" Background="#E74C3C" Foreground="White"
-                    BorderBrush="Transparent" BorderThickness="0" Click="Button_Click_1">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#E74C3C"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="BorderBrush" Value="Transparent"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="Padding" Value="5"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#C0392B"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#A93226"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-
-            
+                    BorderBrush="Transparent" BorderThickness="0" Click="Button_Click_1"/>
             <Button Content="Бронирование" Width="120" Height="35" Margin="10"
                     FontWeight="Bold" Background="#2980B9" Foreground="White"
-                    BorderBrush="Transparent" BorderThickness="0" Click="Button_Click_3">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#E74C3C"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="BorderBrush" Value="Transparent"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="Padding" Value="5"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#C0392B"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#A93226"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-
+                    BorderBrush="Transparent" BorderThickness="0" Click="Button_Click_3"/>
             <Button Content="Сотрудники" Width="120" Height="35" Margin="10"
                     FontWeight="Bold" Background="#2980B9" Foreground="White"
-                    BorderBrush="Transparent" BorderThickness="0" Click="Button_Click_2">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#E74C3C"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="BorderBrush" Value="Transparent"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="Padding" Value="5"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#C0392B"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#A93226"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
+                    BorderBrush="Transparent" BorderThickness="0" Click="Button_Click_2"/>
         </UniformGrid>
+
+        <Button Content="Выйти из системы" Width="150" Height="40" Margin="0,0,0,40"
+                FontWeight="Bold" Background="#E74C3C" Foreground="White"
+                BorderBrush="Transparent" BorderThickness="0" HorizontalAlignment="Center" 
+                VerticalAlignment="Center" Click="LogoutButton_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#E74C3C"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Padding" Value="5"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#C0392B"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="#A93226"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </Window>

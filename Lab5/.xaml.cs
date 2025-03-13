@@ -17,7 +17,7 @@ namespace Lab5
             string email = EmailTextBox.Text;
             string password = PasswordBox.Password;
 
-            using (var context = new CarSharingDB1Entities())
+            using (var context = new CarSharingDBEntities())
             {
                 try
                 {
