@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab5"
         mc:Ignorable="d"
-        Title="Главное меню" Height="450" Width="800">
+        Title="Главное меню" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
     <Window.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
             <GradientStop Color="#2C3E50" Offset="0"/>
@@ -14,15 +15,19 @@
     </Window.Background>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="66*"/>
+            <RowDefinition Height="58*"/>
+            <RowDefinition Height="93*"/>
+        </Grid.RowDefinitions>
         <TextBlock x:Name="WelcomeTextBlock" FontSize="22" FontWeight="Bold" FontFamily="Segoe UI" 
-                   Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20"/>
+                   Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0"/>
 
         <TextBlock Text="Выберите одну из кнопок, чтобы попасть на соответствующую страницу с таблицей." 
                    FontSize="14" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" 
                    Margin="0,60,0,0"/>
 
-        <UniformGrid Rows="2" Columns="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20">
-            <!-- Кнопки для других функций -->
+        <UniformGrid Rows="2" Columns="2" HorizontalAlignment="Center" VerticalAlignment="Top"  Grid.Row="1" >
             <Button Content="Автомобили" Width="120" Height="35" Margin="10"
                     FontWeight="Bold" Background="#E74C3C" Foreground="White"
                     BorderBrush="Transparent" BorderThickness="0" Click="Button_Click"/>
@@ -36,11 +41,11 @@
                     FontWeight="Bold" Background="#2980B9" Foreground="White"
                     BorderBrush="Transparent" BorderThickness="0" Click="Button_Click_2"/>
         </UniformGrid>
-
-        <Button Content="Выйти из системы" Width="150" Height="40" Margin="0,0,0,40"
-                FontWeight="Bold" Background="#E74C3C" Foreground="White"
-                BorderBrush="Transparent" BorderThickness="0" HorizontalAlignment="Center" 
-                VerticalAlignment="Center" Click="LogoutButton_Click">
+        
+        <Button Content="Выйти из системы" Width="150" Height="40" Grid.Row="2"
+         FontWeight="Bold" Background="#E74C3C" Foreground="White"
+         BorderBrush="Transparent" BorderThickness="0" HorizontalAlignment="Center" 
+         VerticalAlignment="Center" Click="LogoutButton_Click">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Background" Value="#E74C3C"/>
@@ -59,5 +64,7 @@
                 </Style>
             </Button.Style>
         </Button>
+
+
     </Grid>
 </Window>

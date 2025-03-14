@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab5.Windows"
         mc:Ignorable="d"
-        Title="Страница информации об автомобилях" Height="600" Width="1000">
+        Title="Страница информации об автомобилях" Height="600" Width="1000"
+        WindowStartupLocation="CenterScreen">
     <Window.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
             <GradientStop Color="#2C3E50" Offset="0"/>

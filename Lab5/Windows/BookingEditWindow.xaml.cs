@@ -51,7 +51,6 @@ namespace Lab5.Windows
                 EndDatePicker.SelectedDate = _booking.EndDate;
                 StatusComboBox.SelectedItem = _booking.Status;
                 PriceTextBox.Text = _booking.Price.ToString("F2");
-
                 ClientComboBox.SelectedValue = _booking.ClientID;
             }
             else
@@ -135,8 +134,7 @@ namespace Lab5.Windows
             _booking.CarID = (long)CarComboBox.SelectedValue;
 
             try
-            {
-              
+            { 
                 if (_booking.Booking_Id == 0)
                 {                  
                     _context.Booking.Add(_booking);

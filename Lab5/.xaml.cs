@@ -15,7 +15,7 @@ namespace Lab5
         private void LoginButton_Click(object sender, RoutedEventArgs args)
         {
             string email = EmailTextBox.Text;
-            string password = PasswordBox.Password;
+            string password = ShowPasswordCheckBox.IsChecked == true ? PasswordTextBox.Text : PasswordBox.Password;
 
             using (var context = new CarSharingDBEntities())
             {
@@ -47,5 +47,28 @@ namespace Lab5
             }
         }
 
+        private void ShowPasswordCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (ShowPasswordCheckBox.IsChecked == true)
+            {
+                PasswordTextBox.Text = PasswordBox.Password;
+                PasswordBox.Visibility = Visibility.Collapsed;
+                PasswordTextBox.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                PasswordBox.Password = PasswordTextBox.Text;
+                PasswordBox.Visibility = Visibility.Visible;
+                PasswordTextBox.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (ShowPasswordCheckBox.IsChecked == true)
+            {
+                PasswordTextBox.Text = PasswordBox.Password;
+            }
+        }
     }
 }

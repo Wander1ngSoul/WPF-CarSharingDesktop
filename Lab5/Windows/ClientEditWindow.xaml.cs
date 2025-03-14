@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity.Migrations.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -126,12 +127,14 @@ namespace Lab5.Windows
             }
 
             if (!Regex.IsMatch(firstName, @"^[А-Яа-яA-Za-z]{2,50}$") ||
-                !Regex.IsMatch(lastName, @"^[А-Яа-яA-Za-z]{2,50}$") ||
-                (!string.IsNullOrEmpty(middleName) && !Regex.IsMatch(middleName, @"^[А-Яа-яA-Za-z]{2,50}$")))
+                !Regex.IsMatch(lastName, @"^[А-Яа-яA-Za-z]{2,50}$")
+                )
             {
-                MessageBox.Show("Имя, фамилия и отчество должны содержать только буквы и быть от 2 до 50 символов.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Имя, фамилия должны содержать только буквы и быть от 2 до 50 символов.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
+
+            if (middleName == null) { middleName = "Неизвестно"; }
 
             if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {

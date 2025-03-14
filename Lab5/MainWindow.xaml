@@ -33,13 +33,27 @@
             <Border Background="#ECF0F1" CornerRadius="5" Margin="0,5,0,0">
                 <PasswordBox Name="PasswordBox" Width="246" Height="26"
                              Background="Transparent" Foreground="Black"
-                             BorderThickness="0" Margin="5"/>
+                             BorderThickness="0" Margin="5"
+                             PasswordChanged="PasswordBox_PasswordChanged"/>
             </Border>
 
+            <!-- Текстовое поле для отображения пароля -->
+            <Border Background="#ECF0F1" CornerRadius="5"   >
+                <TextBox Name="PasswordTextBox" Width="246" Height="26"
+                         Background="Transparent" Foreground="Black"
+                         BorderThickness="0" Margin="5"
+                         Visibility="Collapsed"/>
+            </Border>
+
+
+            <CheckBox Name="ShowPasswordCheckBox" Content="Показать пароль" Foreground="White" 
+                      Checked="ShowPasswordCheckBox_Checked" 
+                      Unchecked="ShowPasswordCheckBox_Checked"/>
+
             <Button Content="Войти" Width="120" Height="35" Margin="10,15,10,0"
-        FontWeight="Bold" Background="#E74C3C" Foreground="White"
-        BorderBrush="Transparent" BorderThickness="0"
-        Click="LoginButton_Click">
+                    FontWeight="Bold" Background="#E74C3C" Foreground="White"
+                    BorderBrush="Transparent" BorderThickness="0"
+                    Click="LoginButton_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#E74C3C"/>
@@ -58,7 +72,8 @@
                     </Style>
                 </Button.Style>
             </Button>
-
         </StackPanel>
+
+        <TextBlock Text="Все права защищены. 2025" HorizontalAlignment="Center" VerticalAlignment="Bottom"  Grid.Row="2" Foreground="White"/>
     </Grid>
 </Window>
